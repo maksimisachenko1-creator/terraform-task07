@@ -18,7 +18,7 @@ import {
 
 # Define the resource block for the imported Storage Account
 # This configuration must be present for Terraform to manage the resource.
-# The lifecycle block prevents any accidental modifications or deletion.
+# The lifecycle block prevents any accidental modifications.
 resource "azurerm_storage_account" "sa" {
   name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.rg.name
@@ -27,8 +27,7 @@ resource "azurerm_storage_account" "sa" {
   account_replication_type = "LRS"
 
   lifecycle {
-    prevent_destroy = true
-    ignore_changes  = all
+    ignore_changes = all
   }
 }
 
